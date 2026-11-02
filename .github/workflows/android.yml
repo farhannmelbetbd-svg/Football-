@@ -1,6 +1,5 @@
+
       - name: Run gradle assembleDebug
         uses: gradle/actions/setup-gradle@v3
         with:
           arguments: assembleDebug
-          working-directory: ./Football-
-          
