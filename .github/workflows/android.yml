@@ -1,48 +1,6 @@
-
-name: Build Football AI Pro APK
-
-on:
-  workflow_dispatch:
-  push:
-    branches: ["main", "master"]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Java
-        uses: actions/setup-java@v5
+      - name: Run gradle assembleDebug
+        uses: gradle/actions/setup-gradle@v3
         with:
-          distribution: temurin
-          java-version: '17'
-
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v4
-        with:
-          accept-android-sdk-licenses: false
-          log-accepted-android-sdk-licenses: false
-
-      - name: Accept Android Licenses
-        run: yes | sdkmanager --licenses
-
-      - name: Install Android SDK
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-        with:
-          gradle-version: '8.9'
-
-      - name: Build APK
-        run: gradle assembleDebug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Football-AI-Pro-debug-apk
-          path: app/build/outputs/apk/debug/app-debug.apk
+          arguments: assembleDebug
+          working-directory: ./Football-
           
