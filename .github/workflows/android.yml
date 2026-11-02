@@ -1,3 +1,4 @@
+
 name: Build Football AI Pro APK
 
 on:
@@ -20,9 +21,12 @@ jobs:
           java-version: '17'
 
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
+        uses: android-actions/setup-android@v4
+        with:
+          accept-android-sdk-licenses: false
+          log-accepted-android-sdk-licenses: false
 
-      - name: Accept Android SDK Licenses
+      - name: Accept Android Licenses
         run: yes | sdkmanager --licenses
 
       - name: Install Android SDK
